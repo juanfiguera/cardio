@@ -25,11 +25,11 @@ jQuery ->
 				y = d3.scale.linear().domain([0, d3.max(data)]).range([h, 0])
 
 				# create a line function
-				# return the X coordinate where we want to plot this datapoint
+				# return the X coordinate
 				line = d3.svg.line().x((d, i) ->
 				  x i
 				).y((d) ->
-				  # return the Y coordinate where we want to plot this datapoint
+				  # return the Y coordinate
 				  y d
 				)
 
@@ -54,6 +54,3 @@ jQuery ->
 
 				# Adding line 
 				graph.append("svg:path").attr "d", line(data)
-
-
-

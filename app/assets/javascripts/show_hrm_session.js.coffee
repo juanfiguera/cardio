@@ -1,3 +1,4 @@
+# create session chart w/ morris.js  
 jQuery ->
 	$(document).ready ->
 	  Morris.Line

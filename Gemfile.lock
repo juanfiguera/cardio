@@ -52,9 +52,6 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     fssm (0.2.10)
-    gon (4.1.1)
-      actionpack (>= 2.3.0)
-      json
     hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
@@ -126,7 +123,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass
   d3-rails
-  gon
   jquery-rails
   mysql
   mysql2
