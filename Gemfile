@@ -11,6 +11,8 @@ gem 'will_paginate', '~> 3.0'
 gem 'better_errors'
 gem 'zurb-foundation'
 gem "d3-rails"
+gem 'mysql2'
+gem 'compass'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,5 +28,4 @@ end
 
 gem 'jquery-rails'
 
-gem 'mysql2'
-gem 'compass'
+
