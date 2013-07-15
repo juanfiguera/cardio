@@ -1,0 +1,57 @@
+<h5>Overall User Stats</h5>
+<table>
+	<tr>
+		<th>Number of Users</th>
+		<th>BPM Min</th>
+		<th>BPM Max</th>
+		<th>BPM Avg</th>
+		<th>HR Zone 1 Pct</th>
+		<th>HR Zone 2 Pct</th>
+		<th>HR Zone 3 Pct</th>
+	</tr>
+	<tr>
+		<td><%= User.all.count %></td>
+		<td><%= HrmSession.minimum(:minBpm).to_i %></td> 
+		<td><%= HrmSession.maximum(:maxBpm).to_i %></td>
+		<td><%= HrmSession.average(:avgBpm).to_i %></td>
+		<td><%= get_percentage_for(:hr_zone_1_duration) %>%</td>
+		<td><%= get_percentage_for(:hr_zone_2_duration) %>%</td>
+		<td><%= get_percentage_for(:hr_zone_3_duration) %>%</td>
+	</tr>
+</table>
+
+<h5>User Session Stats</h5>
+<table>
+	<tr>
+		<th>User</th>
+		<th>BPM Min</th>
+		<th>BPM Max</th>
+		<th>BPM Avg</th>
+		<th>HR Zone 1 Duration</th>
+		<th>HR Zone 2 Duration</th>
+		<th>HR Zone 3 Duration</th>
+	</tr>
+	<% @hrmSessions.each do |h|  %>
+		<tr>
+			<td><%= link_to h.user.username, user_path(h.user.id) %></td>
+			<td><%= h.minBpm %></td>
+			<td><%= h.maxBpm %></td>
+			<td><%= h.avgBpm %></td>
+		  <td><%= distance_of_time_in_words(h.hr_zone_1_duration) %></td>
+		  <td><%= distance_of_time_in_words(h.hr_zone_2_duration) %></td>
+		  <td><%= distance_of_time_in_words(h.hr_zone_3_duration) %></td>	
+		  <td><%= link_to '>', hrm_session_path(h) %></td>
+		</tr>
+		<tr class="session-unit">
+			<td><%= content_tag :div, "", id: "session-chart", data: {array: getArray(h)} %></td>
+		</tr>
+	<% end %>
+</table>
+<div class="row">
+  <div class="small-7 small-centered columns">
+		<%= will_paginate @hrmSessions %>
+	</div>
+</div>
+
+
+

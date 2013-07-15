@@ -1,0 +1,29 @@
+<h4><%= @user.username %> Session Stats</h4>
+<table>
+	<tr>
+		<th>User</th>
+		<th>BPM Min</th>
+		<th>BPM Max</th>
+		<th>BPM Avg</th>
+		<th>HR Zone 1 Duration</th>
+		<th>HR Zone 2 Duration</th>
+		<th>HR Zone 3 Duration</th>
+	</tr>
+	<% @user.hrmSessions.each do |h|  %>
+		<tr>
+			<td><%= h.user.username %></td>
+			<td><%= h.minBpm %></td>
+			<td><%= h.maxBpm %></td>
+			<td><%= h.avgBpm %></td>
+		  <td><%= distance_of_time_in_words(h.hr_zone_1_duration) %></td>
+		  <td><%= distance_of_time_in_words(h.hr_zone_2_duration) %></td>
+		  <td><%= distance_of_time_in_words(h.hr_zone_3_duration) %></td>	
+		  <td><%= link_to '>', hrm_session_path(h) %></td>
+		</tr>
+		<tr class="session-unit">
+			<td><%= content_tag :div, "", id: "session-chart", data: {array: getArray(h)} %></td>
+		</tr>
+	<% end %>
+</table>
+
+

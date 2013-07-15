@@ -1,0 +1,32 @@
+<script src="/show_hrm_session"></script>
+
+
+<h4><%= link_to @hrmSession.user.username, user_path(@hrmSession.user.id) %></h4>
+<table>
+	<tr>
+		<th>Session Number</th>
+		<th>BPM Min</th>
+		<th>BPM Max</th>
+		<th>BPM Avg</th>
+		<th>HR Zone 1 Pct</th>
+		<th>HR Zone 2 Pct</th>
+		<th>HR Zone 3 Pct</th>
+		<th>Duration</th>
+		<th>Date</th>
+	</tr>
+	<tr>
+		<td><%= @hrmSession.id %></td>
+		<td><%= @hrmSession.minBpm %></td>
+		<td><%= @hrmSession.maxBpm %></td>
+		<td><%= @hrmSession.avgBpm %></td>
+		<td><%= @hrmSession.hr_zone_1_duration %></td>
+		<td><%= @hrmSession.hr_zone_2_duration %></td>
+		<td><%= @hrmSession.hr_zone_3_duration %></td>
+		<td><%= @hrmSession.duration %></td>
+		<td><%= @hrmSession.created_at.strftime('%a %d %b %Y') %></td>
+	</tr>
+</table>
+
+<%= content_tag :div, "", id: "chart", data: {sessions: @hrmSession.hrmDataPoints } %>
+
+

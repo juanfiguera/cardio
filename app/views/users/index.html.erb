@@ -1,0 +1,27 @@
+<h5>Cardio Users</h5>
+<table>
+	<tr>
+		<th>User</th>
+		<th>BPM Min</th>
+		<th>BPM Max</th>
+		<th>BPM Avg</th>
+		<th>Total Sessions</th>
+		<th>Streak</th>
+		<th></th>
+	</tr>
+	<% @users.each do |u|  %>
+		
+		<tr>
+			<td><%= u.username %></td>
+			<td><%= u.hrmSessions.minimum(:minBpm) %></td>
+			<td><%= u.hrmSessions.maximum(:maxBpm) %></td>
+			<td><%= u.hrmSessions.average(:avgBpm) %></td>
+			<td><%= u.hrmSessions.count() %></td>
+			<td><%= distance_of_time_in_words(u.hrmSessions.sum(:duration)) %></td>
+		  <td><%= link_to '>', user_path(u) %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= will_paginate @users %>
+
